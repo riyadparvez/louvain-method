@@ -67,6 +67,7 @@ public:
   void display(void);
   void display_reverse(void);
   void display_binary(char *outfile);
+  void write_community(const char *filename_w);
   bool check_symmetry();
 
 

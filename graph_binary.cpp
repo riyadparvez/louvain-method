@@ -119,6 +119,17 @@ Graph::display() {
 }
 
 void
+Graph::write_community(const char *filename_w) {
+  FILE* fOut = fopen(filename_w, "wt");
+  for (size_t i=0; i<nodes.size(); i++) {
+    for (size_t j=0; j<nodes[i].size(); j++) {
+      fprintf(fOut, "%d ", nodes[i][j]);  
+    }
+    fprintf(fOut, "\n");  
+  }
+}
+
+void
 Graph::display_reverse() {
   for (unsigned int node=0 ; node<nb_nodes ; node++) {
     pair<vector<unsigned int>::iterator, vector<float>::iterator > p = neighbors(node);

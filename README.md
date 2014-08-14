@@ -2,7 +2,7 @@
 
 Louvain method for community detection
 
-Original implementation doesn't print nodes membership communities. This updated version print membership of original graph.
+Original implementation doesn't print nodes membership of communities. This updated version print membership of original graph.
 
 -----------------------------------------------------------------------------
 

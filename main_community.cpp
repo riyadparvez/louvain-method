@@ -31,6 +31,7 @@ using namespace std;
 
 char *filename = NULL;
 char *filename_w = NULL;
+char *filename_comm = NULL;
 char *filename_part = NULL;
 int type       = UNWEIGHTED;
 int nb_pass    = 0;
@@ -39,6 +40,7 @@ int display_level = -2;
 int k1 = 16;
 
 bool verbose = false;
+bool write_community = false;
 
 void
 usage(char *prog_name, const char *more) {
@@ -46,6 +48,7 @@ usage(char *prog_name, const char *more) {
   cerr << "usage: " << prog_name << " input_file [-w weight_file] [-p part_file] [-q epsilon] [-l display_level] [-v] [-h]" << endl << endl;
   cerr << "input_file: file containing the graph to decompose in communities." << endl;
   cerr << "-w file\tread the graph as a weighted one (weights are set to 1 otherwise)." << endl;
+  cerr << "-o write communities into file, one community per like (default turned off)." << endl;
   cerr << "-p file\tstart the computation with a given partition instead of the trivial partition." << endl;
   cerr << "\tfile must contain lines \"node community\"." << endl;
   cerr << "-q eps\ta given pass stops when the modularity is increased by less than epsilon." << endl;
@@ -69,6 +72,11 @@ parse_args(int argc, char **argv) {
         filename_w = argv[i+1];
 	i++;
 	break;
+      case 'o':
+        write_community = true;
+        filename_comm = argv[i+1];
+    i++;
+    break;
       case 'p':
         filename_part = argv[i+1];
 	i++;
@@ -142,8 +150,6 @@ main(int argc, char **argv) {
       g.display();
     if (display_level==-1)
       c.display_partition();
-    //g.display();
-    cout << "\n\n";
     g = c.partition2graph_binary();
     c = Community(g, -1, precision);
 
@@ -163,7 +169,9 @@ main(int argc, char **argv) {
     display_time("End");
     cerr << "Total duration: " << (time_end-time_begin) << " sec." << endl;
   }
-  g.display();
+  if (write_community) {
+    g.write_community(filename_comm);
+  }
   cerr << new_mod << endl;
 }
 

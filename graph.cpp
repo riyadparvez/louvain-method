@@ -47,7 +47,8 @@ Graph::Graph(char *filename, int type) {
       nb_links++;
     }
   }
-  copy(s.begin(), s.end(), nodes.begin());
+  //copy(s.begin(), s.end(), nodes.begin());
+  copy(s.begin(), s.end(), std::back_inserter(nodes));
   sort(nodes.begin(), nodes.end());
   finput.close();
 }
