@@ -219,7 +219,7 @@ Community::partition2graph_binary() {
   // Compute communities
   vector<vector<int> > comm_nodes(final);
   vector<vector<int> > communities(final);
-  printf("%s %d \n", __FILE__, __LINE__);
+  //printf("%s %d \n", __FILE__, __LINE__);
   for (int node=0 ; node<size ; node++) {
     //TODO add node handling
     vector<int>& comm = communities[renumber[n2c[node]]];  

@@ -48,7 +48,7 @@ usage(char *prog_name, const char *more) {
   cerr << "usage: " << prog_name << " input_file [-w weight_file] [-p part_file] [-q epsilon] [-l display_level] [-v] [-h]" << endl << endl;
   cerr << "input_file: file containing the graph to decompose in communities." << endl;
   cerr << "-w file\tread the graph as a weighted one (weights are set to 1 otherwise)." << endl;
-  cerr << "-o write communities into file, one community per like (default turned off)." << endl;
+  cerr << "-o write communities into file, one community per line (default turned off)." << endl;
   cerr << "-p file\tstart the computation with a given partition instead of the trivial partition." << endl;
   cerr << "\tfile must contain lines \"node community\"." << endl;
   cerr << "-q eps\ta given pass stops when the modularity is increased by less than epsilon." << endl;
